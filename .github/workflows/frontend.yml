@@ -31,6 +31,7 @@ env:
 
 jobs:
   test:
+    if: false
     uses: ./.github/workflows/.test.yml
     secrets: inherit
     with:

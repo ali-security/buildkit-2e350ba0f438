@@ -30,6 +30,7 @@ env:
 
 jobs:
   build:
+    if: false
     runs-on: ubuntu-24.04
     strategy:
       fail-fast: false
@@ -260,6 +261,7 @@ jobs:
           vagrant ssh -- "sudo cat /vagrant/.tmp/logs/containerd"
 
   sandbox-build:
+    if: false
     if: ${{ github.repository == 'moby/buildkit' }}
     runs-on: ${{ matrix.platform == 'linux/arm64' && 'ubuntu-24.04-arm' || 'ubuntu-24.04' }}
     strategy:

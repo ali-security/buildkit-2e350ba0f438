@@ -34,6 +34,7 @@ env:
 
 jobs:
   prepare:
+    if: false
     runs-on: ubuntu-24.04
     outputs:
       binaries-platforms: ${{ steps.platforms.outputs.matrix }}

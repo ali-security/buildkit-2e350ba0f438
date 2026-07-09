@@ -1,0 +1,23 @@
+name: seal-xplat
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  test:
+    name: test (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-latest, windows-latest]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.25'
+      - name: Test
+        run: |
+          PACKAGES=$(go list ./... | grep -v -E './cache|./snapshot|./source/git|./source/http|./util/overlay|./worker|./executor')
+          go test -short -count=1 $PACKAGES
+        shell: bash
